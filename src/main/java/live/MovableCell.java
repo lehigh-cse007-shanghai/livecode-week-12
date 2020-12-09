@@ -46,10 +46,54 @@ public class MovableCell extends PApplet {
         movableCellColor = new int[]{ (int) random(255), (int)random(255), (int)random(255)};
     }
 
+    public void moveUp(){
+        if(movableX >= 0 && movableY >= 0 && movableX <= 20 && movableY <= 20)
+            cells[movableX][movableY].isMovableCell = false;
+        this.movableY -= 1;
+        if(movableX >= 0 && movableY >= 0 && movableX <= 20 && movableY <= 20)
+            cells[movableX][movableY].isMovableCell = true;
+    }
+
+    public void moveDown(){
+        if(movableX >= 0 && movableY >= 0 && movableX <= 20 && movableY <= 20)
+            cells[movableX][movableY].isMovableCell = false;
+        this.movableY += 1;
+        if(movableX >= 0 && movableY >= 0 && movableX <= 20 && movableY <= 20)
+            cells[movableX][movableY].isMovableCell = true;
+    }
+
+    public void moveLeft(){
+        if(movableX >= 0 && movableY >= 0 && movableX <= 20 && movableY <= 20)
+            cells[movableX][movableY].isMovableCell = false;
+        this.movableX -= 1;
+        if(movableX >= 0 && movableY >= 0 && movableX <= 20 && movableY <= 20)
+            cells[movableX][movableY].isMovableCell = true;
+    }
+
+    public void moveRight(){
+        if(movableX >= 0 && movableY >= 0 && movableX <= 20 && movableY <= 20)
+            cells[movableX][movableY].isMovableCell = false;
+        this.movableX += 1;
+        if(movableX >= 0 && movableY >= 0 && movableX <= 20 && movableY <= 20)
+            cells[movableX][movableY].isMovableCell = true;
+    }
+
     public void keyPressed() {
         switch (String.valueOf(key).toLowerCase()){
             case "c":
                 changeMovableCellColor();
+                break;
+            case "w":
+                moveUp();
+                break;
+            case "s":
+                moveDown();
+                break;
+            case "a":
+                moveLeft();
+                break;
+            case "d":
+                moveRight();
                 break;
             default:
                 break;
