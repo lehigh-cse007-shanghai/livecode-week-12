@@ -17,6 +17,114 @@ public class TwoDimensionalArray {
         }
     }
 
+    public void starsMrWang(int size){
+        for(int i = 1; i <= size; i ++){
+            for(int j = size; j >= i; j --)
+                System.out.print(" ");
+            for(int j = 1; j <= i; j ++)
+                System.out.print("*" + " ");
+            System.out.println();
+        }
+    }
+
+    public void printTriangleStar(int size){
+        char[][] arr2 = new char[size][2 * size - 1];
+        for(int i = 0; i < size; i ++){
+            for(int j = 0; j < 2 * size - 1; j ++){
+                if(Math.abs(j - (size - 1)) <= i)
+                    arr2[i][j] = '*';
+                else
+                    arr2[i][j] = ' ';
+            }
+        }
+
+        for (int i = 0; i < size; i++){
+            for (int j = 0; j < 2 * size - 1; j++){
+                System.out.print(arr2[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public void printPower2TriangleMrBao(int size){
+        for(int i = 1; i <= size; i ++){
+            int k = 1;
+            for(int j = 1; j <= size * 2 - 1; j ++){
+                if(j > size - i && j < size) {
+                    System.out.printf("%5d", k);
+                    k *= 2;
+                }
+                else if(j == size)
+                    System.out.printf("%5d", k);
+                else if(j > size && j < size + i){
+                    k /= 2;
+                    System.out.printf("%5d", k);
+                }
+                else
+                    System.out.print("     ");
+            }
+            System.out.println();
+        }
+    }
+
+    public void printPower2Triangle(int size){
+        int[][] arr2 = new int[size][2 * size - 1];
+        int n = 1;
+        int m = -1;
+        for(int i = 0; i < size; i ++) {
+            m = n;
+            for (int j = size - 1; j < 2 * size - 1; j ++)
+                if (m >= 1) {
+                    arr2[i][j] = m;
+                    m /= 2;
+                }
+            m = n;
+            for (int j = size - 1; j >= 0; j --)
+                if (m >= 1) {
+                    arr2[i][j] = m;
+                    m /= 2;
+                }
+            n *= 2;
+        }
+
+        for (int i = 0; i < size; i++){
+            for (int j = 0; j < 2 * size - 1; j++){
+                if(arr2[i][j] == 0)
+                    System.out.print("    ");
+                else
+                    System.out.printf("%4d", arr2[i][j]);
+            }
+            System.out.println();
+        }
+    }
+
+    public void printPower2TriangleMrXiaoNanYang(int size){
+        int[][] arr2 = new int[size][2 * size - 1];
+        int n = 1;
+        for(int j = 0; j < size; j ++){
+            arr2[size - 1][j] = n;
+            n *= 2;
+        }
+        for(int j = 1; j <= size - 1; j ++){
+            arr2[size - 1][size - 1 + j] = arr2[size - 1][size - 1 - j];
+        }
+        for(int i = size - 2; i >= 0; i --){
+            for(int j = 0; j < 2 * size - 1; j ++)
+                arr2[i][j] = arr2[i + 1][j] / 2;
+        }
+
+        for (int i = 0; i < size; i++){
+            for (int j = 0; j < 2 * size - 1; j++){
+                if(arr2[i][j] == 0)
+                    System.out.print("    ");
+                else
+                    System.out.printf("%4d", arr2[i][j]);
+            }
+            System.out.println();
+        }
+    }
+
+
     public void printTriangleTwoDimensionalArray(int size){
         int[][] arr2 = new int[size][size];
         for(int i = 0; i < size; i ++){
@@ -32,8 +140,6 @@ public class TwoDimensionalArray {
             }
             System.out.println();
         }
-
-
     }
 
     public void printTriangleUsingArrayList(int size){
@@ -144,7 +250,14 @@ public class TwoDimensionalArray {
         TwoDimensionalArray td = new TwoDimensionalArray();
 //        td.printTriangle(8);
 //        td.printTriangleUsingArrayList(8);
-        td.printTriangleUsingHashMapAndClone(8);
+//        td.printTriangleUsingHashMapAndClone(8);
+//        td.printPower2Triangle(9);
+//        td.printPower2TriangleMrBao(9);
+        td.printPower2TriangleMrXiaoNanYang(8);
+//        td.starsMrWang(8);
+//        System.out.printf("%4d\n", 128);
+//        System.out.printf("%4d\n", 8);
+//        System.out.printf("%4d\n", 1228);
     }
 
 }
