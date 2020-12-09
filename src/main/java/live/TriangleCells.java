@@ -2,6 +2,8 @@ package live;
 
 import processing.core.PApplet;
 
+import java.util.ArrayList;
+
 public class TriangleCells extends PApplet {
     // A Cell object
     class Cell {
@@ -54,19 +56,41 @@ public class TriangleCells extends PApplet {
         }
     }
 
+    public void buildTwoTriangles(int size){
+        ArrayList<Integer> arr = new ArrayList<>();
+        for(int i = 1; i <= size; i ++)
+            arr.add(i);
+        for(int i = size - 1; i >= 1; i --)
+            arr.add(i);
+
+        for(int i = 1; i <= size; i ++){
+            for(int j = 0; j < arr.size(); j ++){
+                if(arr.get(j) >= i + 1)
+                    cells[j][i - 1].isMovableCell = true;
+                else
+                    cells[j][i - 1].isMovableCell = false;
+
+            }
+        }
+    }
+
     public void keyPressed() {
         switch (String.valueOf(key).toLowerCase()){
             case "t":
+                clear();
                 buildTriangle(12);
                 break;
+            case "2":
+                clear();
+                buildTwoTriangles(11);
+                break;
             default:
+                clear();
                 break;
         }
     }
 
-    public void settings() {
-        size(widthCell * cols, heightCell * rows);
-        cells = new Cell[cols][rows];
+    public void clear(){
         for (int i = 0; i < cols; i++) {
             for (int j = 0; j < rows; j++) {
                 // Initialize each Cell object
@@ -74,6 +98,12 @@ public class TriangleCells extends PApplet {
                         widthCell, heightCell);
             }
         }
+    }
+
+    public void settings() {
+        size(widthCell * cols, heightCell * rows);
+        cells = new Cell[cols][rows];
+        clear();
     }
 
     public void draw() {

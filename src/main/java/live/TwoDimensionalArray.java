@@ -1,6 +1,7 @@
 package live;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class TwoDimensionalArray {
@@ -14,6 +15,25 @@ public class TwoDimensionalArray {
             }
             System.out.println();
         }
+    }
+
+    public void printTriangleTwoDimensionalArray(int size){
+        int[][] arr2 = new int[size][size];
+        for(int i = 0; i < size; i ++){
+            int num = 1;
+            for(int j = 0; j <= i; j ++){
+                arr2[i][j] = num;
+                num += 1;
+            }
+        }
+        for (int i = 0; i < size; i++){
+            for (int j = 0; j < size; j++){
+                System.out.print(arr2[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+
     }
 
     public void printTriangleUsingArrayList(int size){
@@ -45,18 +65,32 @@ public class TwoDimensionalArray {
             }
             System.out.println();
         }
-
     }
 
-    public void printTriangleABCDEFT(int size){
+    public void printTriangleUsingHashMapAndClone(int size){
+        HashMap<Integer, ArrayList<Integer>> map = new HashMap<>();
+        ArrayList<Integer> arr = new ArrayList<>();
+        for(int i = 1; i <= size; i ++){
+            arr.add(i);
+            map.put(i, (ArrayList<Integer>) arr.clone());
+        }
+
+        for(int i = size; i >= 1; i --){
+            for(int j = 0; j < map.get(i).size(); j ++){
+                System.out.print(map.get(i).get(j) + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public void printTriangleABCDEFT(int size) {
         char[] arrABCDEFG = new char[]{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K'};
-        for(int i = 0; i < size; i ++){
+        for (int i = 0; i < size; i++) {
             int num = 1;
-            for(int j = 0; j < size - i; j ++) {
+            for (int j = 0; j < size - i; j++) {
                 System.out.print(arrABCDEFG[num - 1] + " ");
                 num += 1;
             }
-            System.out.println();
         }
     }
 
@@ -88,14 +122,13 @@ public class TwoDimensionalArray {
         }
     }
 
-
     public void printTwoTriangles(int size){
         ArrayList<Integer> arr = new ArrayList<>();
         for(int i = 1; i <= size; i ++)
             arr.add(i);
         for(int i = size - 1; i >= 1; i --)
             arr.add(i);
-        
+
         for(int i = 1; i <= size; i ++){
             for(int j = 0; j < arr.size(); j ++){
                 if(arr.get(j) >= i + 1)
@@ -111,7 +144,7 @@ public class TwoDimensionalArray {
         TwoDimensionalArray td = new TwoDimensionalArray();
 //        td.printTriangle(8);
 //        td.printTriangleUsingArrayList(8);
-        td.printTwoTriangles(8);
+        td.printTriangleUsingHashMapAndClone(8);
     }
 
 }
