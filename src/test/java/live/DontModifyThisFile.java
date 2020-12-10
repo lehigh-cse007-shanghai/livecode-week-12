@@ -6,9 +6,9 @@ package live;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
+import java.io.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -25,6 +25,19 @@ public class DontModifyThisFile {
   @After
   public void restoreStreams() {
     System.setOut(originalOut);
+  }
+
+  @Test
+  public void test1(){
+    MovableCell mc = new MovableCell();
+    mc.cells[20][20].isMovableCell = true;
+  }
+
+  @Test
+  public void test2() throws IOException {
+    BufferedWriter bw = new BufferedWriter(new FileWriter("grable/file.txt"));
+    bw.write("99");
+    bw.close();
   }
 
 }

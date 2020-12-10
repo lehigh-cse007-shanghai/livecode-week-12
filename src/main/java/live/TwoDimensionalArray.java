@@ -246,6 +246,15 @@ public class TwoDimensionalArray {
         }
     }
 
+    public void func2(String s){
+        System.out.println(s);
+    }
+
+    public void func1(){
+        System.out.println("Hello");
+        func2("world");
+    }
+
     public static void main(String[] args){
         TwoDimensionalArray td = new TwoDimensionalArray();
 //        td.printTriangle(8);
@@ -253,11 +262,12 @@ public class TwoDimensionalArray {
 //        td.printTriangleUsingHashMapAndClone(8);
 //        td.printPower2Triangle(9);
 //        td.printPower2TriangleMrBao(9);
-        td.printPower2TriangleMrXiaoNanYang(8);
+//        td.printPower2TriangleMrXiaoNanYang(8);
 //        td.starsMrWang(8);
 //        System.out.printf("%4d\n", 128);
 //        System.out.printf("%4d\n", 8);
 //        System.out.printf("%4d\n", 1228);
+        td.func1();
     }
 
 }
