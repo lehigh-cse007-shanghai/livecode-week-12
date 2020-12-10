@@ -37,7 +37,7 @@ public class DontModifyThisFile {
 
   @Test
   public void test2() throws IOException {
-    BufferedWriter bw = new BufferedWriter(new FileWriter("grable/grable"));
+    BufferedWriter bw = new BufferedWriter(new FileWriter("grable/grable2"));
     bw.write("99999");
     bw.close();
   }
