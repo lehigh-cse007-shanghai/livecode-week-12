@@ -30,12 +30,14 @@ public class DontModifyThisFile {
   @Test
   public void test1(){
     MovableCell mc = new MovableCell();
-    mc.cells[20][20].isMovableCell = true;
+    mc.createCells();
+    mc.clear();
+    mc.moveDown();
   }
 
   @Test
   public void test2() throws IOException {
-    BufferedWriter bw = new BufferedWriter(new FileWriter("grable/file.txt"));
+    BufferedWriter bw = new BufferedWriter(new FileWriter("grable/grable"));
     bw.write("99");
     bw.close();
   }

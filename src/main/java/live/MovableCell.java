@@ -2,45 +2,39 @@ package live;
 
 import processing.core.PApplet;
 
+
+class Cell {
+    public float x, y;   // x,y location
+    public float w, h;   // width and height
+
+    public boolean isMovableCell = false;
+
+    // Cell Constructor
+    public Cell(float _x, float _y, float _w, float _h) {
+        x = _x;
+        y = _y;
+        w = _w;
+        h = _h;
+    }
+}
+
 public class MovableCell extends PApplet {
     // A Cell object
-    class Cell {
-        float x, y;   // x,y location
-        float w, h;   // width and height
-
-        boolean isMovableCell = false;
-
-        // Cell Constructor
-        Cell(float _x, float _y, float _w, float _h) {
-            x = _x;
-            y = _y;
-            w = _w;
-            h = _h;
-        }
-
-        void display() {
-            stroke(255);
-            if(isMovableCell)
-                fill(movableCellColor[0], movableCellColor[1], movableCellColor[2]); // Cell in RED
-            else
-                fill(200, 200, 200); // Cell in GREY
-            rect(x, y, w, h);
-        }
-    }
-
-    int movableX = 10;
-    int movableY = 10;
-
-    Cell[][] cells;
-    int[] movableCellColor = {255, 0, 0}; // Initially set to Red
 
     // Number of columns and rows in the grid
-    int cols = 21;
-    int rows = 21;
+    public int cols = 21;
+    public int rows = 21;
+
+    public Cell[][] cells = new Cell[cols][rows];
+
+    public int movableX = 10;
+    public int movableY = 10;
+
+    public int[] movableCellColor = {255, 0, 0}; // Initially set to Red
 
     // Width and height of each cell in the grid
-    int widthCell = 40;
-    int heightCell = 40;
+    public int widthCell = 40;
+    public int heightCell = 40;
 
     public void changeMovableCellColor() {
         movableCellColor = new int[]{ (int) random(255), (int)random(255), (int)random(255)};
@@ -84,6 +78,7 @@ public class MovableCell extends PApplet {
 
 
     }
+
     public void keyPressed() {
         switch (String.valueOf(key).toLowerCase()){
             case "c":
@@ -111,7 +106,12 @@ public class MovableCell extends PApplet {
 
     public void settings() {
         size(widthCell * cols, heightCell * rows);
-        cells = new Cell[cols][rows];
+        createCells();
+        clear();
+        cells[movableX][movableY].isMovableCell = true;
+    }
+
+    public void createCells(){
         for (int i = 0; i < cols; i++) {
             for (int j = 0; j < rows; j++) {
                 // Initialize each Cell object
@@ -119,16 +119,32 @@ public class MovableCell extends PApplet {
                         widthCell, heightCell);
             }
         }
-        cells[movableX][movableY].isMovableCell = true;
+    }
+
+    public void clear(){
+        for (int i = 0; i < cols; i++) {
+            for (int j = 0; j < rows; j++) {
+                cells[i][j].isMovableCell = false;
+            }
+        }
     }
 
     public void draw() {
         background(0);
         for (int i = 0; i < cols; i++) {
             for (int j = 0; j < rows; j++) {
-                cells[i][j].display();
+                display(cells[i][j]);
             }
         }
+    }
+
+    public void display(Cell cell){
+        stroke(255);
+        if(cell.isMovableCell)
+            fill(movableCellColor[0], movableCellColor[1], movableCellColor[2]); // Cell in RED
+        else
+            fill(200, 200, 200); // Cell in GREY
+        rect(cell.x, cell.y, cell.w, cell.h);
     }
 
     public static void main(String[] args) {
