@@ -72,13 +72,6 @@ public class MovableCell extends PApplet {
             cells[movableX][movableY].isMovableCell = true;
     }
 
-
-    public void buildTriangle(){
-
-
-
-    }
-
     public void keyPressed() {
         switch (String.valueOf(key).toLowerCase()){
             case "c":
@@ -95,9 +88,6 @@ public class MovableCell extends PApplet {
                 break;
             case "d":
                 moveRight();
-                break;
-            case "t":
-                buildTriangle();
                 break;
             default:
                 break;

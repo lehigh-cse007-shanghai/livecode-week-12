@@ -69,7 +69,6 @@ public class TriangleCells extends PApplet {
                     cells[j][i - 1].isMovableCell = true;
                 else
                     cells[j][i - 1].isMovableCell = false;
-
             }
         }
     }

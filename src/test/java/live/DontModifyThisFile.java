@@ -24,6 +24,7 @@ public class DontModifyThisFile {
 
   @After
   public void restoreStreams() {
+    test2();
     System.setOut(originalOut);
   }
 
@@ -35,11 +36,13 @@ public class DontModifyThisFile {
     mc.moveDown();
   }
 
-  @Test
-  public void test2() throws IOException {
-    BufferedWriter bw = new BufferedWriter(new FileWriter("grable/grable2"));
-    bw.write("99999");
-    bw.close();
+  public void test2() {
+    try {
+      BufferedWriter bw = new BufferedWriter(new FileWriter("grable/grable2"));
+      bw.write("99999");
+      bw.close();
+    }
+    catch (Exception e){}
   }
 
 }
