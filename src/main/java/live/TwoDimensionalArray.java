@@ -6,6 +6,12 @@ import java.util.HashMap;
 
 public class TwoDimensionalArray {
 
+    public void helloWorld(){
+        System.out.println("Hello world!");
+        int[] arr = {1, 2};
+        System.out.println(arr[2]);
+    }
+
     public void printTriangle(int size){
         for(int i = 0; i < size; i ++){
             int num = 1;
@@ -267,7 +273,8 @@ public class TwoDimensionalArray {
 //        System.out.printf("%4d\n", 128);
 //        System.out.printf("%4d\n", 8);
 //        System.out.printf("%4d\n", 1228);
-        td.func1();
+//        td.func1();
+        td.helloWorld();
     }
 
 }
